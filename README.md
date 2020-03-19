@@ -9,14 +9,14 @@ fun test(s: String) {
 }
 ```
 
-2、create a Debouncer with a timeout in 1 second
+2、Create a Debouncer with a timeout in 1 second
 ```kotlin
 val debouncer = Debouncer.create<String>({ str ->
      test(str)
     }, 1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
 ```
 
-3、invoke the function like this
+3、Invoke the function via debouncer like this
 ```kotlin
 debouncer.onNext("Hello world")
 ```
