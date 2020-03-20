@@ -21,7 +21,7 @@ class Debouncer<T> private constructor(callable: (T) -> Unit,
 
   init {
     mInnerSubscription = mSubject.asObservable()
-        .debounce(timeout, unit)
+        .throttleFirst(timeout, unit)
         .observeOn(callableSchedulers)
         .subscribe({ value ->
           callable.invoke(value)
@@ -34,7 +34,7 @@ class Debouncer<T> private constructor(callable: (T) -> Unit,
     mSubject.onError(e)
   }
 
-  override fun onNext(t: T) {
+  override fun onNext(t: T?) {
     mSubject.onNext(t)
   }
 
